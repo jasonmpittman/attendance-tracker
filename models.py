@@ -20,6 +20,7 @@ class Users(Base):
 class Courses(Base):
     number = db.Column(db.Integer)
     section = db.Column(db.Integer)
+    term = db.Column(db.String(7))
 
 # data model for Attendance
 class Attendance(Base):
