@@ -24,6 +24,7 @@ class Courses(Base):
 
 # data model for Attendance
 class Attendance(Base):
+    # an 'Attendance' record is a unique id bound to a specific user instance and course instance
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
 

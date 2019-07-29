@@ -74,6 +74,17 @@ def attend():
     
     return redirect(url_for('home'))
 
+# route for addattend path from attendance.js/html
+@attendance.route('/here', methods=['GET', 'POST'])
+def here():
+    if request.method == 'POST':
+        
+            user = session['user']
+            course = request.form['course']
+
+            print(user + " is present in " + course)
+
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     attendance.run()
