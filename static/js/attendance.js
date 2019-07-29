@@ -3,37 +3,12 @@ var Align = {
     textAlign: 'center',
   };
   
-  var origin = window.location.origin;
-
   var StudentAttendanceForm = React.createClass({
-    
-    //don't need this
-    getInitialState: function(){
-      // set initial state of form inputs
-      return {title: '', option: '', options: []}
-    },
-  
-    handleCourseChange: function(e){
-      //change title as the user types
-      this.setState({course: e.target.value});
-    },
-  
-    handleKeywordChange: function(e){
-      this.setState({keyword: e.target.value});
-    },
-  
-    handleSubmit: function(e){
-             
-      var course = this.state.course
-      var keyword = this.state.keyword
-
-
-    },
-  
+     
     render: function(){
       return (
       <div>
-       <form id="attendance_form" className="form-signin" method="post" action="{{ url_for('here') }}">
+       <form id="attendance_form" className="form-signin" method="post" action="/here">
           <h2 className="form-signin-heading" style={Align}>Submit Attendance</h2>
   
           <div className="form-group has-success">

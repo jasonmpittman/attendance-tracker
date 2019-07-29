@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
     <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-    <!--<script type="text/babel" src="{{ url_for('static', filename='js/attendance.js') }}"></script>-->
+    <script type="text/babel" src="{{ url_for('static', filename='js/attendance.js') }}"></script>
 
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -25,9 +25,9 @@
     <!-- style override for custom color-->
     <style>
         .btn { 
-          color: #ffffff; 
-          background-color: #611BBD; 
-          border-color: #130269; 
+          color: #ffffff !important ; 
+          background-color: #611BBD !important ; 
+          border-color: #130269 !important ; 
         }
   
         .btn:hover, 
@@ -43,28 +43,16 @@
 
   </head>
 
-  <body style="text-align: center">
+  <body>
 
-    <div>
-      <form style="display: inline-block" id="attendance_form" className="form-signin" method="post" action="{{ url_for('here') }}">
-         <h2 className="form-signin-heading">Submit Attendance</h2>
- 
-         <div className="form-group has-success">
-           <label htmlFor="course" className="sr-only">Course</label>
-           <input type="text" id="course" name="course" className="form-control" placeholder="Enter course code here" />
-         </div>
-
-         <div className="form-group has-success">
-           <label htmlFor="keyword" className="sr-only">Keyword</label>
-           <input type="text" id="keyword" name="keyword" className="form-control" placeholder="Enter keyword here" />
-         </div>
- 
-         <div className="row form-group">
-           <button className="btn btn-lg btn-success btn-block" type="submit">I'm Here!</button>
-         </div>
-         <br />
-       </form>
-     </div>
+    <div class="container">
+      
+      <div id="form_container">
+      
+     
+      </div>
+    
+    </div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="static/js/ie10-viewport-bug-workaround.js"></script>
