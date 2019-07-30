@@ -1,6 +1,8 @@
 from flask import Flask, flash, render_template, request, redirect, url_for, session
+from flask_admin import Admin
+from admin import AdminView
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, Users
+from models import db, Users, Attendance, Courses
 
 attendance = Flask(__name__)
 
@@ -9,7 +11,14 @@ attendance.config.from_object('config')
 
 # init our db
 db.init_app(attendance)
-db.create_all(app=attendance)
+
+# uncomment if the db needs to be created
+#db.create_all(app=attendance)
+
+# admin dashboard stuff
+admin = Admin(attendance, name='Dashboard', index_view=AdminView(Attendance, db.session, url='/admin', endpoint='admin'))
+admin.add_view(AdminView(Users, db.session))
+admin.add_view(AdminView(Courses, db.session))
 
 # route for default/home path
 @attendance.route('/')
@@ -52,7 +61,7 @@ def login():
     else:
         flash('Username or password is incorrect')
     
-    return redirect(url_for('home')) 
+    return redirect(request.args.get('next') or url_for('home')) 
 
 # route for user logout path
 @attendance.route('/logout')
