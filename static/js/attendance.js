@@ -8,7 +8,7 @@ var Align = {
     render: function(){
       return (
       <div>
-       <form id="attendance_form" className="form-signin" method="post" action="/here">
+       <form id="attendance_form" className="form-signin" method="post" action="/addattend">
           <h2 className="form-signin-heading" style={Align}>Submit Attendance</h2>
   
           <div className="form-group has-success">

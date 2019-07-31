@@ -84,14 +84,17 @@ def attend():
     return redirect(url_for('home'))
 
 # route for addattend path from attendance.js/html
-@attendance.route('/here', methods=['GET', 'POST'])
-def here():
+@attendance.route('/addattend', methods=['GET', 'POST'])
+def addattend():
+    
     if request.method == 'POST':
         
-            user = session['user']
-            course = request.form['course']
+            user = Users.query.filter_by(username=session['user']).first()
+            course = Courses.query.filter_by(code=request.form['course']).first()
 
-            print(user + " is present in " + course)
+            print('user {} present in {}', user.id, course.id)
+
+            
 
     return redirect(url_for('home'))
 

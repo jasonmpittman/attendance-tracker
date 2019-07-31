@@ -18,7 +18,7 @@ class Users(Base):
 
 # data model for Courses
 class Courses(Base):
-    number = db.Column(db.Integer)
+    code = db.Column(db.String(10))
     section = db.Column(db.Integer)
     term = db.Column(db.String(7))
 
