@@ -15,6 +15,11 @@ var Align = {
             <label htmlFor="course" className="sr-only">Course</label>
             <input type="text" id="course" name="course" className="form-control" placeholder="Enter course code here" />
           </div>
+  
+          <div className="form-group has-success">
+            <label htmlFor="course" className="sr-only">Section</label>
+            <input type="text" id="section" name="section" className="form-control" placeholder="Enter course section here" />
+          </div>
 
           <div className="form-group has-success">
             <label htmlFor="keyword" className="sr-only">Keyword</label>

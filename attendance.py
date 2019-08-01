@@ -25,6 +25,10 @@ admin.add_view(AdminView(Courses, db.session))
 def home():
     return render_template('index.html')
 
+@attendance.route('/faculty')
+def faculty():
+  return render_template('faculty.html')
+
 # route for user sign up path
 @attendance.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -34,7 +38,7 @@ def signup():
 
         password = generate_password_hash(password)
 
-        user = Users(username=username, password=password)
+        user = Users(username=username, password=password, role='student')
 
         db.session.add(user)
         db.session.commit()
@@ -61,7 +65,11 @@ def login():
     else:
         flash('Username or password is incorrect')
     
-    return redirect(request.args.get('next') or url_for('home')) 
+    if user.role == 'student':
+        return redirect(request.args.get('next') or url_for('home')) 
+    
+    if user.role == 'faculty':
+        return redirect(request.args.get('next') or url_for('faculty'))
 
 # route for user logout path
 @attendance.route('/logout')
@@ -91,10 +99,12 @@ def addattend():
         
             user = Users.query.filter_by(username=session['user']).first()
             course = Courses.query.filter_by(code=request.form['course']).first()
+            section = Courses.query.filter_by(section=request.form['section']).first()
+            keyword = request.form['keyword'] #Courses.query.filter_by(keyword=request.form['keyword']).first()
 
-            print('user {} present in {}', user.id, course.id)
+            print('user {} present in {}', user.id, course.id, course.section, keyword)
 
-            
+            #need to validate what the student submits based on what is registered in Courses. how to error handle (try-catch)            
 
     return redirect(url_for('home'))
 
