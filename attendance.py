@@ -29,6 +29,26 @@ def home():
 def faculty():
   return render_template('faculty.html')
 
+@attendance.route('/searchattend', methods=['GET', 'POST'])
+def searchattend():
+    course = request.form['course']
+    section = request.form['section']
+    keyword = request.form['keyword']
+
+    results = []
+
+    #search_string = search.data[course]
+
+    if search.data[course] == '':
+        query = db.query(Attendance)
+        results = query.all()
+    
+    if not results:
+        flash('No results found')
+        return redirect(url_for('faculty'))
+    else:
+        return render_template('faculty', table=table)
+
 # route for user sign up path
 @attendance.route('/signup', methods=['GET', 'POST'])
 def signup():
