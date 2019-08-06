@@ -27,7 +27,14 @@ class Attendance(Base):
     # an 'Attendance' record is a unique id bound to a specific user instance
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
-    keyword = db.Column(db.String(100))    
+    key = db.Column(db.String(100))
+
+    def __init__(self, attend_time, mod_time, user_id, course_id, key):
+        self.date_created = attend_time
+        self.date_modified = mod_time
+        self.user_id = user_id
+        self.course_id = course_id
+        self.key = key
 
 
     

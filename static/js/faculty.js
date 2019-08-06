@@ -37,7 +37,6 @@ var Align = {
         </form>
 
         <h3 style={Align}>Attendance Records</h3>
-        
 
       </div>
       );

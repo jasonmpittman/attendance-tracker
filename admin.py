@@ -8,9 +8,6 @@ class AdminView(ModelView):
         self.static_folder = 'static'
     
     def is_accessible(self):
-        #name = session['user']
-        #user = Users.query.filter_by(username=name).first()
-        #return user.role == 'faculty'
         return session.get('user') == 'Administrator'
     
     def inaccessible_callback(self, name, **kwargs):

@@ -51,9 +51,27 @@
       
      
       </div>
-    
-
+      <!--{% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+          <p class="{{ category }}">{{ message }}</p>
+          {% endfor %}
+      {% endif %}
+      {% endwith %}-->
+   
+        {% for row in table %}
+          <tr id={{ row.id }}>
+            <th scope="row">{{ row.row }}</th>
+            <td> {{ row.date_created }} </td>
+            <td> {{ row.user_id }} </td>
+            <td> {{ row.course_id }} </td>
+            <td> {{ row.key }} </td>
+          </tr>
+        {% endfor %}
+        
     </div>
+
+
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="static/js/ie10-viewport-bug-workaround.js"></script>

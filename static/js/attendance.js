@@ -22,8 +22,8 @@ var Align = {
           </div>
 
           <div className="form-group has-success">
-            <label htmlFor="keyword" className="sr-only">Keyword</label>
-            <input type="text" id="keyword" name="keyword" className="form-control" placeholder="Enter keyword here" />
+            <label htmlFor="key" className="sr-only">Key</label>
+            <input type="text" id="key" name="key" className="form-control" placeholder="Enter key here" />
           </div>
   
           <div className="row form-group">

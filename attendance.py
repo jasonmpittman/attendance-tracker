@@ -3,6 +3,7 @@ from flask_admin import Admin
 from admin import AdminView
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, Users, Attendance, Courses
+from datetime import datetime
 
 attendance = Flask(__name__)
 
@@ -25,29 +26,21 @@ admin.add_view(AdminView(Courses, db.session))
 def home():
     return render_template('index.html')
 
+# default route for faculty role
 @attendance.route('/faculty')
 def faculty():
   return render_template('faculty.html')
 
+# route for faculty attendance search
 @attendance.route('/searchattend', methods=['GET', 'POST'])
 def searchattend():
-    course = request.form['course']
-    section = request.form['section']
-    keyword = request.form['keyword']
-
-    results = []
-
-    #search_string = search.data[course]
-
-    if search.data[course] == '':
-        query = db.query(Attendance)
-        results = query.all()
+    results = Attendance.query.all()
     
     if not results:
         flash('No results found')
         return redirect(url_for('faculty'))
     else:
-        return render_template('faculty', table=table)
+        return render_template('faculty.html', table=results)
 
 # route for user sign up path
 @attendance.route('/signup', methods=['GET', 'POST'])
@@ -116,15 +109,21 @@ def attend():
 def addattend():
     
     if request.method == 'POST':
+        attend_time = datetime.now()
+        mod_time = datetime.now()
+        user = Users.query.filter_by(username=session['user']).first()
+        course = Courses.query.filter_by(code=request.form['course']).first()
+        section = Courses.query.filter_by(section=request.form['section']).first()
+        key = request.form['key']
+
+        print('user {} present in {}', user.id, course.id, course.section, key)
+
+        #need to validate what the student submits based on what is registered in Courses. how to error handle (try-catch)            
         
-            user = Users.query.filter_by(username=session['user']).first()
-            course = Courses.query.filter_by(code=request.form['course']).first()
-            section = Courses.query.filter_by(section=request.form['section']).first()
-            keyword = request.form['keyword'] #Courses.query.filter_by(keyword=request.form['keyword']).first()
-
-            print('user {} present in {}', user.id, course.id, course.section, keyword)
-
-            #need to validate what the student submits based on what is registered in Courses. how to error handle (try-catch)            
+        #attendee = Attendance(user, course, key) #TypeError: __init__() takes 1 positional argument but 4 were given
+        attendee = Attendance(attend_time, mod_time, user.id, course.id, key)
+        db.session.add(attendee)
+        db.session.commit()
 
     return redirect(url_for('home'))
 
