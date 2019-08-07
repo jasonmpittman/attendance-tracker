@@ -1,0 +1,14 @@
+1. create joins for 'course' in faculty view (course_id to code, section, term)
+2. create join for user in faculty view (user_id to name)
+3. create 'search' function to parse through query.all() in faculty view
+    a. may need to add input controls 
+4. create a way to get 'home' from faculty view, admin view
+5. create a way for student to know their attendance was received
+6. 'Attend' link on index.html for faculty view should route to /faculty
+7. admin dashboard - attendance table doesn't show all fields
+8. format 'flash' message on index.html
+9. add 'term' input control on student 'attend' view
+10. 
+
+
+

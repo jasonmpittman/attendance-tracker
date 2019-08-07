@@ -120,7 +120,7 @@ def addattend():
 
         #need to validate what the student submits based on what is registered in Courses. how to error handle (try-catch)            
         
-        #attendee = Attendance(user, course, key) #TypeError: __init__() takes 1 positional argument but 4 were given
+        # build the attendance record and write to db
         attendee = Attendance(attend_time, mod_time, user.id, course.id, key)
         db.session.add(attendee)
         db.session.commit()

@@ -58,17 +58,29 @@
           {% endfor %}
       {% endif %}
       {% endwith %}-->
-   
+      <div class="table table-dark">
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Student</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Key</th>
+                </tr>
+            </thead>
+            <tbody>
         {% for row in table %}
           <tr id={{ row.id }}>
-            <th scope="row">{{ row.row }}</th>
-            <td> {{ row.date_created }} </td>
+            <th scope="row">{{ row.date_created }}</th>
+            <!--<td> {{ row.date_created }} </td>-->
             <td> {{ row.user_id }} </td>
             <td> {{ row.course_id }} </td>
             <td> {{ row.key }} </td>
           </tr>
         {% endfor %}
-        
+          </tbody>
+        </table>
+      </div>
     </div>
 
 
