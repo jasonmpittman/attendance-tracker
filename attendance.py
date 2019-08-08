@@ -34,8 +34,8 @@ def faculty():
 # route for faculty attendance search
 @attendance.route('/searchattend', methods=['GET', 'POST'])
 def searchattend():
-    results = Attendance.query.all()
-    
+    results = Attendance.query.all() # need to run the joins here?
+ 
     if not results:
         flash('No results found')
         return redirect(url_for('faculty'))
@@ -115,11 +115,11 @@ def addattend():
         course = Courses.query.filter_by(code=request.form['course']).first()
         section = Courses.query.filter_by(section=request.form['section']).first()
         key = request.form['key']
-
         print('user {} present in {}', user.id, course.id, course.section, key)
-
+        
         #need to validate what the student submits based on what is registered in Courses. how to error handle (try-catch)            
         
+
         # build the attendance record and write to db
         attendee = Attendance(attend_time, mod_time, user.id, course.id, key)
         db.session.add(attendee)

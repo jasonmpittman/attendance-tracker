@@ -16,11 +16,17 @@ class Users(Base):
     password = db.Column(db.String(200))
     role = db.Column(db.String(7))
 
+    def __repr__(self):
+        return self.username
+
 # data model for Courses
 class Courses(Base):
     code = db.Column(db.String(10))
     section = db.Column(db.Integer)
     term = db.Column(db.String(7))
+
+    def __repr__(self):
+        return self.code + str(self.section) + self.term
 
 # data model for Attendance
 class Attendance(Base):
@@ -29,12 +35,14 @@ class Attendance(Base):
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'))
     key = db.Column(db.String(100))
 
+    student = db.relationship('Users', foreign_keys=[user_id], backref=db.backref('courses', lazy='dynamic'))
+    course = db.relationship('Courses', foreign_keys=[course_id])
+
     def __init__(self, attend_time, mod_time, user_id, course_id, key):
         self.date_created = attend_time
         self.date_modified = mod_time
         self.user_id = user_id
         self.course_id = course_id
         self.key = key
-
 
     
