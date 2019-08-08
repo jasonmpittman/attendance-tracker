@@ -1,5 +1,5 @@
-1. create joins for 'course' in faculty view (course_id to code, section, term)
-2. create join for user in faculty view (user_id to name)
+[x] 1. create joins for 'course' in faculty view (course_id to code, section, term)
+[x] 2. create join for user in faculty view (user_id to name)
 3. create 'search' function to parse through query.all() in faculty view
     a. may need to add input controls 
 4. create a way to get 'home' from faculty view, admin view
